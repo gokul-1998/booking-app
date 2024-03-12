@@ -14,3 +14,5 @@ or
 - `yarn add react-router-dom`
 
 - `rfc` will add react functional component
+
+- `yarn add axios`
