@@ -12,3 +12,5 @@ or
 
 - lets add react routers
 - `yarn add react-router-dom`
+
+- `rfc` will add react functional component
