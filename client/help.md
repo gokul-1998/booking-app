@@ -7,3 +7,5 @@ or
 - `npx tailwindcss init -p`
     - use this to ocreate tailwind config
 - after  installing tailwind css we need  to  restart the  app
+
+- i am downloading icons from `https://heroicons.com/`
