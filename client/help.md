@@ -9,3 +9,6 @@ or
 - after  installing tailwind css we need  to  restart the  app
 
 - i am downloading icons from `https://heroicons.com/`
+
+- lets add react routers
+- `yarn add react-router-dom`
