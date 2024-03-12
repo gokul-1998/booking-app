@@ -7,3 +7,4 @@
 - `yarn add cors`
 - `yarn add dotenv`
 - `yarn add bcryptjs`
+- `yarn add jsonwebtoken`
