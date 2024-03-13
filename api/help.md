@@ -8,3 +8,4 @@
 - `yarn add dotenv`
 - `yarn add bcryptjs`
 - `yarn add jsonwebtoken`
+- `yarn add cookie-parser`

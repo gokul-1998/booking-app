@@ -2,7 +2,7 @@ const express = require("express");
 const cors=require("cors");
 const { default: mongoose } = require("mongoose");
 const bcrypt=require("bcryptjs");
-
+const cookieParser=require("cookie-parser");
 const jwt=require("jsonwebtoken");
 const User=require("./models/User.js")
 
@@ -13,7 +13,7 @@ const bcryptSalt=bcrypt.genSaltSync(10);
 const jwtSecret="sadasdsdadasdasdasdasdwewe"  ;
 
 app.use(express.json());
-
+app.use(cookieParser())
 app.use(cors({
     credentials: true,
     origin: "http://localhost:5173"
@@ -46,24 +46,44 @@ app.post("/register", async (req,res)=>{
 }
 )
 
-app.post("/login",async (req,res)=>{
-    const {email,password}=req.body;
-    const userDoc=User.findOne({email});
-    if (userDoc){
-        const passOk=bcrypt.compareSync(password,(await userDoc).password);
-    if (passOk){
-        jwt.sign({email:userDoc.email,id:userDoc._id},jwtSecret,{},(err,token)=>{
-            if (err) throw err;
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const userDoc = await User.findOne({ email });
+        if (userDoc) {
+            const passOk = bcrypt.compareSync(password, userDoc.password);
+            if (passOk) {
+                jwt.sign({ 
+                    email: userDoc.email, 
+                    id: userDoc._id,
+                // name:userDoc.name 
+            }, jwtSecret, {}, (err, token) => {
+                    if (err) throw err;
+                    res.cookie("token", token).json(userDoc);
+                });
+            } else {
+                res.status(422).json("Password incorrect");
+            }
+        } else {
+            res.status(404).json("User not found");
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
-        res.cookie("token",token).json("pass ok");
+app.get("/profile",(req,res)=>{
+    const {token} = req.cookies;
+    if (token){
+      jwt.verify(token,jwtSecret,{},async  (err,userData)=>{
+            if (err) throw err;
+            const {name,email,_id}  =  await User.findById(userData.id);
+            res.json({name,email,_id} );
         });
+
     } else{
-        res.status(422).json("pass not ok");
-    
-    }
-    }
-    else{
-        res.json("not found");
+        
+        res.json(null);
     }
 })
 
