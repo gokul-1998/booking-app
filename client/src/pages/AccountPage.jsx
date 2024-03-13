@@ -1,25 +1,31 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import  {UserContext} from "../UserContext";
 import { Link, Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function AccountPage(){
-    const {ready,user}=useContext(UserContext);
+    const [redirect,setRedirect]=useState(null);
+    const {ready,user,setUser}=useContext(UserContext);
+
     
     let {subpage} = useParams();
     if (subpage===undefined){
         subpage="profile";
+        
     }
 
    async  function logout(){
-      await   axios.post("/logout")
+      await   axios.post("/logout");
+      
+      setRedirect("/");
+      setUser(null); 
     }
 
     if(!ready){
         return 'Loading...';
     }
  
-    if (ready && !user){
+    if (ready && !user && !redirect){
         return <Navigate to={"/login"}/>
     }
 
@@ -33,7 +39,9 @@ export default function AccountPage(){
         return classes;
     }
    
-
+    if  (redirect){
+        return <Navigate to={redirect} />
+    }
     
     return (
         <div>
