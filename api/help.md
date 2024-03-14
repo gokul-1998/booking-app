@@ -9,3 +9,4 @@
 - `yarn add bcryptjs`
 - `yarn add jsonwebtoken`
 - `yarn add cookie-parser`
+- `yarn add image-downloader`
