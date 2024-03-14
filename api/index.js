@@ -16,6 +16,8 @@ const jwtSecret="sadasdsdadasdasdasdasdwewe"  ;
 
 app.use(express.json());
 app.use(cookieParser())
+app.use("/uploads",express.static(__dirname+"/uploads"));
+
 app.use(cors({
     credentials: true,
     origin: "http://localhost:5173"
@@ -99,7 +101,7 @@ app.post("/upload-by-link",async (req,res)=> {
     const newName="photo"+Date.now() + ".jpg";
    await  imageDownloader.image({
         url:link,
-        dest: __dirname + "/uploads" + newName
+        dest: __dirname + "/uploads/" + newName
     });
     res.json(newName);
 
