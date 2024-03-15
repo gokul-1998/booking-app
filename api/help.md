@@ -10,3 +10,4 @@
 - `yarn add jsonwebtoken`
 - `yarn add cookie-parser`
 - `yarn add image-downloader`
+- `yarn add multer`
