@@ -42,9 +42,21 @@ export default function PlacesPage() {
         </div>
       <div className="mt-4">
         {places.length > 0 && places.map(place=>(
-          <div className="bg-gray-200 p-4 rounded-2xl">
-            {place.title}
-          </div>
+          <Link to={'/account/places/'+place._   id} className="bg-gray-100 gap-4 cursor-pointer flex p-4 rounded-2xl">
+            <div className="w-32 h-32 bg-gray-300 grow shrink-0">
+              {place.photos.length>0 && (
+                <img src={place.photos[0]} alt=""/>
+              )}
+            </div>
+            <div className="grow-0 shrink">
+              
+           <h2 className="text-xl">
+           {place.title}
+         
+            </h2> 
+            <p className="text-sm mt-2">{place.description}</p>
+            </div>
+             </Link>
         )) }
       </div>
  
