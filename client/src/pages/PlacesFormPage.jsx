@@ -61,11 +61,20 @@ export default function PlacesFormPage(){
     )
   }
 
-  async function addNewPlace(ev){
+  async function savePlace(ev){
     ev.preventDefault();
+    const placeData={title,address,addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests};
     
-   await axios.post("/places",{title,address,addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests});
+    if (id){
+      //update
+      await axios.put("/places",{id,...placeData});
    setRedirect(true);
+    }
+    else{
+      await axios.post("/places",placeData);
+      setRedirect(true);
+    }
+   
   }
     if (redirect){
         return <Navigate to={'/account/places'}/>;
@@ -74,7 +83,7 @@ export default function PlacesFormPage(){
     return (
         <div>
             <AccountNav/>   
-        <form onSubmit={addNewPlace }>
+        <form onSubmit={savePlace }>
           {preInput("Title","title for your place. Should be short and catchy as in advertisements")}
          
           <input

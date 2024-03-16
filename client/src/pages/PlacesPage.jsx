@@ -42,8 +42,8 @@ export default function PlacesPage() {
         </div>
       <div className="mt-4">
         {places.length > 0 && places.map(place=>(
-          <Link to={'/account/places/'+place._id} className="bg-gray-100 gap-4 cursor-pointer flex p-4 rounded-2xl">
-            <div className="w-32 h-32 bg-gray-300 grow shrink-0">
+          <Link to={'/account/places/'+place._id} key={place} className="bg-gray-100 gap-4 cursor-pointer flex p-4 rounded-2xl">
+            <div className="w-32 h-32 bg-gray-300 grow shrink-0"  >
               {place.photos.length>0 && (
                 <img src={place.photos[0]} alt=""/>
               )}
