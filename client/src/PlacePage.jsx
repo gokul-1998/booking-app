@@ -120,6 +120,44 @@ export default function PlacePage() {
           Show more photos
         </button>
       </div>
+      <div className="my-4">
+        <h2 className="font-semibold text-2xl">Description</h2>
+        {place.description}
+        </div>
+        <div className="grid grid-cols-2"> 
+        <div>
+          Check-In : {place.checkIn} <br/>
+          Check-Out : {place.checkOut} <br/>
+          Max Number of Guests : {place.maxGuests} <br/>
+
+        </div>
+        <div>
+          <div className="bg-white shadow p-4 rounded-2xl">
+            <div className="text-2xl text-center">
+
+                Price : ${place.price }/per night 
+            </div>
+            <div className="border rounded-2xl">
+            <div className=" py-3 px-4">
+              <label>Check In:</label>
+              <input type="date" />
+            </div>
+            <div className="  py-3 px-4">
+              <label>Check Out:</label>
+              <input type="date" />
+            </div>
+              
+            </div>
+            
+
+
+                <button className="primary mt-4">Book this place</button>
+          </div>
+        </div>
+
+        </div>
+
+
     </div>
   );
 }
