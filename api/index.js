@@ -130,12 +130,12 @@ app.post("/upload",photosMiddleware.array('photos',100), (req,res)=>{
 app.post("/places",(req,res)=>{
     console.log(req.cookies);
     const {token} = req.cookies; 
-    const {title,address,addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests}=req.body;
+    const {title,address,addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests,price}=req.body;
     jwt.verify(token,jwtSecret,{},async  (err,userData)=>{
         if (err) throw err;
        
        const placeDoc=  await  Place.create({
-            owner:userData.id,
+            owner:userData.id,price,
             title,address,photos:addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests
     });
     res.json(placeDoc);
@@ -161,7 +161,7 @@ app.get("/places/:id",async (req,res)=>{
 app.put('/places',async (req,res)=>{
     
     const {token} = req.cookies; 
-    const {id,title,address,addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests}=req.body;
+    const {id,title,address,addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests,price}=req.body;
     
     jwt.verify(token,jwtSecret,{},async  (err,userData)=>{
         if (err) throw err;
@@ -170,7 +170,7 @@ app.put('/places',async (req,res)=>{
             placeDoc.set(
                 {
                     owner:userData.id,
-                    title,address,photos:addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests
+                    title,address,photos:addedPhotos,description,perks,extraInfo,checkIn,checkOut,maxGuests,price
             }
             );
            await  placeDoc.save();
