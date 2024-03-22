@@ -2,7 +2,9 @@
 
 - ![image](https://github.com/gokul-1998/booking-app/assets/163745649/117c6459-ab64-4dca-a5c6-ed60fe5ecc12)
      - to fix the above use
-         - `Set-ExecutionPolicy Unrestricted -Force`     
+          -    open powershell as administrator mode.and paste the below cmd  
+         - `Set-ExecutionPolicy Unrestricted -Force`
+         - after this reopen vscode   
 - type `yarn` to  install the packages
 - type `yarn dev` to run the client side app
 - `yarn add tailwindcss postcss autoprefixer`
