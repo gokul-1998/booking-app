@@ -11,3 +11,7 @@
 - `yarn add cookie-parser`
 - `yarn add image-downloader`
 - `yarn add multer`
+
+
+- to run mongo in local using docker 
+    - ` docker run -d --name mongodb -p 27017:27017 mongo `
