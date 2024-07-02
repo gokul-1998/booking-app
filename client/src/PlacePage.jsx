@@ -44,7 +44,7 @@ export default function PlacePage() {
           {place?.photos?.length > 0 &&
             place.photos.map((photo) => (
               <div>
-                <img src={"http://localhost:4000/uploads/" + photo} alt="" />
+                <img src={"http://localhost:8000/uploads/" + photo} alt="" />
               </div>
             ))}
         </div>
@@ -74,7 +74,7 @@ export default function PlacePage() {
               <div>
                 <img
                   className="aspect-square object-cover"
-                  src={"http://localhost:4000/uploads/" + place.photos?.[0]}
+                  src={"http://localhost:8000/uploads/" + place.photos?.[0]}
                   alt=""
                 />
               </div>
@@ -84,7 +84,7 @@ export default function PlacePage() {
             {place.photos?.[1] && (
               <img
                 className="aspect-square object-cover"
-                src={"http://localhost:4000/uploads/" + place.photos?.[1]}
+                src={"http://localhost:8000/uploads/" + place.photos?.[1]}
                 alt=""
               />
             )}
@@ -92,7 +92,7 @@ export default function PlacePage() {
               {place.photos?.[2] && (
                 <img
                   className="aspect-square object-cover relative top-2 "
-                  src={"http://localhost:4000/uploads/" + place.photos?.[2]}
+                  src={"http://localhost:8000/uploads/" + place.photos?.[2]}
                   alt=""
                 />
               )}
