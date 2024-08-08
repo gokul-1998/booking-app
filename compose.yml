@@ -1,4 +1,3 @@
-# specify the version of docker-compose
 version: "3.8"
 
 # define the services/containers to be run
@@ -26,6 +25,13 @@ services:
 
     # this is for docker compose watch mode
     # anything mentioned under develop will be watched for changes by docker compose watch and it will perform the action mentioned
+
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    user: "node"
+    # Ensure permissions are set in the Dockerfile
+    command: sh -c "chown -R node:node /app && npm install && npm run dev"
     develop:
       # we specify the files to watch for changes
       watch:
@@ -40,7 +46,7 @@ services:
           action: sync
 
   # define the api service/container
-  api: 
+  api:
     # api service depends on the db service so the db service will be started before the api service
     depends_on: 
       - db
@@ -58,6 +64,8 @@ services:
     # for demo purposes, we're using a local mongodb instance
     environment: 
       MONGO_URL: mongodb://db/anime
+    volumes:
+      - ./api/uploads:/app/uploads
     
     # establish docker compose watch mode for the api service
     develop:
