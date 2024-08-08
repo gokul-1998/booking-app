@@ -77,6 +77,7 @@ services:
         - path: ./api/package-lock.json
           action: rebuild
         
+        
         # it'll watch for changes in the api directory and sync the changes with the container real time
         - path: ./api
           target: /app
