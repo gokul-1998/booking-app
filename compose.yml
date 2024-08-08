@@ -1,3 +1,4 @@
+# specify the version of docker-compose
 version: "3.8"
 
 # define the services/containers to be run
@@ -46,7 +47,7 @@ services:
           action: sync
 
   # define the api service/container
-  api:
+  api: 
     # api service depends on the db service so the db service will be started before the api service
     depends_on: 
       - db
@@ -76,7 +77,6 @@ services:
           action: rebuild
         - path: ./api/package-lock.json
           action: rebuild
-        
         
         # it'll watch for changes in the api directory and sync the changes with the container real time
         - path: ./api
