@@ -26,6 +26,13 @@ services:
 
     # this is for docker compose watch mode
     # anything mentioned under develop will be watched for changes by docker compose watch and it will perform the action mentioned
+
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    user: "node"
+    # Ensure permissions are set in the Dockerfile
+    command: sh -c "chown -R node:node /app && npm install && npm run dev"
     develop:
       # we specify the files to watch for changes
       watch:
@@ -58,6 +65,8 @@ services:
     # for demo purposes, we're using a local mongodb instance
     environment: 
       MONGO_URL: mongodb://db/anime
+    volumes:
+      - ./api/uploads:/app/uploads
     
     # establish docker compose watch mode for the api service
     develop:
