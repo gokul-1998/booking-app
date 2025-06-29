@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
+    {/* browse router is used to navigate between pages
+     */}
     <App />
     </BrowserRouter>
   </React.StrictMode>,
